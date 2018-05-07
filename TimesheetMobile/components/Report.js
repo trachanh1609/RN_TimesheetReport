@@ -4,12 +4,13 @@ import {
   Text,
   View
 } from 'react-native';
+import axios from 'axios';
 
 
 export default class Report extends Component {
   constructor(props){
     super(props);
-    this.state= {users: [{name: 'One'}, {name: 'Two'}]} ;
+    this.state= {users: [{id: 1, name: 'One'}, {id:2, name: 'Two'}]} ;
   }
 
   componentDidMount(){
@@ -18,10 +19,12 @@ export default class Report extends Component {
 
   async getUsers(){
     try {
-      let response = await fetch('http://192.168.1.4:3000/users');
+      let response = await axios.get('http://192.168.1.4:3000/users');
       let responseJson = await response.json();
+      console.warn('Get success');
       this.setState(prev => ({...prev, users: responseJson}));
     } catch (e){
+      console.warn('Get failure');
       console.warn(e);
     }
   }
@@ -32,7 +35,7 @@ export default class Report extends Component {
         <Text style={styles.welcome}>
           This is the Report Page
         </Text>
-        {this.state.users.map(user=><Text>{user.name}</Text>)}
+        {this.state.users.map(user=><Text key={user.id}>{user.name}</Text>)}
       </View>
     );
   }
