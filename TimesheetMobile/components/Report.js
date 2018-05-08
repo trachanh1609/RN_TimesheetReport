@@ -4,7 +4,7 @@ import {
   Text,
   View
 } from 'react-native';
-import axios from 'axios';
+import {SERVER_URL} from '../const_var'
 
 
 export default class Report extends Component {
@@ -19,7 +19,7 @@ export default class Report extends Component {
 
   async getUsers(){
     try {
-      let response = await axios.get('http://192.168.1.4:3000/users');
+      let response = await fetch( SERVER_URL + '/users');
       let responseJson = await response.json();
       console.warn('Get success');
       this.setState(prev => ({...prev, users: responseJson}));

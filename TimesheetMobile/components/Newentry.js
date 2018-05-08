@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, View, Button} from 'react-native';
 import axios from 'axios';
+import {SERVER_URL} from '../const_var'
 
 
 export default class Entry extends Component {
@@ -23,17 +24,49 @@ export default class Entry extends Component {
 
   }
 
-  createNewEntry = async ()=> {
+  createNewEntry = async () => {
     try {
-        console.warn(this.state.newEntry.date);
-        let data = JSON.stringify(this.state.newEntry);
-        let response = await fetch('http://192.168.1.4:3000/reports', data);
-        console.warn(response);
+        let data = this.state.newEntry;
+        let response = await fetch(SERVER_URL + '/reports', {
+          method: 'post',
+          body: JSON.stringify(data),
+          headers: new Headers({
+            'Content-Type': 'application/json'
+          })
+
+        });
+        let responseJson = await response.json();
+        console.warn(responseJson);
     } catch (e) {
       console.warn('createNewEntry failed');
       console.warn(e);
     }
   }
+
+// this createEntry is working
+  // createEntry() {
+  //   let data = {
+  //     userId: 3,
+  //     projectName: 'Apple',
+  //     date: new Date(),
+  //     duration: {
+  //       hour: 7,
+  //       minute: 30,
+  //     },
+  //     summary: 'Today is a good day'
+  //   };
+  //
+  //   fetch(SERVER_URL + '/reports', {
+  //     method: 'post',
+  //     body: JSON.stringify(data),
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     }
+  //   }).then(res => res.json())
+  //   .then(response => console.warn('Success:'))
+  //   .catch(error => console.warn(error ));
+  // }
 
   render(){
     return (
