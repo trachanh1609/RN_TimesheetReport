@@ -1,6 +1,13 @@
 {
-  "report": [
-    
+  "reports": [
+    { "userId": 2,
+      "projectName": "ABB Drive",
+      "date": "new Date()",
+      "duration": {
+        "hour": 7,
+        "minute": 30 },
+      "summary": "Creating new functions today"
+    }
   ],
   "users": [
   {
