@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, View, Button} from 'react-native';
 import axios from 'axios';
-import {SERVER_URL} from '../const_var'
+import {SERVER_URL} from '../const_var';
+import DatePicker from 'react-native-datepicker';
 
 
 export default class Entry extends Component {
@@ -9,12 +10,9 @@ export default class Entry extends Component {
     super(props);
     this.state = {newEntry:
       { userId: 2,
-        projectName: 'ABB Drive',
+        projectName: 'default',
         date: new Date(),
-        duration: {
-          hour: 7,
-          minute: 30,
-        },
+        duration: 7.5,
         summary: 'Creating new functions today'
       }
     };
@@ -26,7 +24,10 @@ export default class Entry extends Component {
 
   createNewEntry = async () => {
     try {
-        let data = this.state.newEntry;
+        let data = Object.assign({},this.state.newEntry,{
+          date: new Date()
+        });
+
         let response = await fetch(SERVER_URL + '/reports', {
           method: 'post',
           body: JSON.stringify(data),
@@ -75,7 +76,31 @@ export default class Entry extends Component {
           <Text>New Entry</Text>
         </View>
         <View style={styles.row}>
-          <Text>Date</Text>
+              <DatePicker
+                style={{width: 200}}
+                date={this.state.date}
+                mode="date"
+                placeholder="select date"
+                format="YYYY-MM-DD"
+                minDate="2016-05-01"
+                maxDate="2018-05-15"
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                customStyles={{
+                  dateIcon: {
+                    position: 'absolute',
+                    left: 0,
+                    top: 4,
+                    marginLeft: 0
+                  },
+                  dateInput: {
+                    marginLeft: 36
+                  }
+                  // ... You can check the source to find the other keys.
+                }}
+                onDateChange={(date) => {this.setState({date: date})}}
+              />
+
         </View>
         <View style={styles.row}>
           <Text>Project</Text>
