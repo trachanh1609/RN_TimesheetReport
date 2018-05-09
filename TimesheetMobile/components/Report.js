@@ -6,7 +6,9 @@ import {
   Button
 } from 'react-native';
 import axios from 'axios';
-import {SERVER_URL} from '../const_var'
+import {SERVER_URL} from '../const_var';
+import { BarChart, Grid, XAxis } from 'react-native-svg-charts';
+
 
 
 export default class Report extends Component {
@@ -17,12 +19,22 @@ export default class Report extends Component {
 
   constructor(props){
     super(props);
-    this.state= {records: [],users: [{id: 1, name: 'One'}, {id:2, name: 'Two'}]} ;
+    this.state= {
+      records: [],
+      users: [{id: 1, name: 'One'}, {id:2, name: 'Two'}],
+      data: [7,7,7,7.5,8,8.5,6,9,7.5,8,8,6.5,8]
+    } ;
   }
 
-  componentDidMount(){
+  async componentDidMount(){
     this.getUsers();
-    this.getRecords();
+    await this.getRecords();
+    let newData = this.getDataForChart(this.state.records) ;
+    // this.setState(prev => ({...prev, data: newData}));
+  }
+
+  getDataForChart(records) {
+    return records.map(record => record.duration);
   }
 
   async getUsers(){
@@ -62,17 +74,37 @@ export default class Report extends Component {
             onPress={() => this.props.navigation.navigate('Newentry')}
             title="Add new entry"
           />
-          <Button
-            onPress={()=>{console.warn(this.state.records)}}
-            title="SHOW STATE"
-            color="#841584"
-          />
+
         </View>
         <View style={{flex: 8}}>
           <Text style={styles.welcome}>
             This is the Report Page
           </Text>
-          {this.state.users.map(user=><Text key={user.id}>{user.name}</Text>)}
+          <View >
+            <BarChart
+                  style={{ width: 300, height: 200 }}
+                  data={ this.state.data }
+                  gridMin={0}
+                  svg={{ fill: 'rgb(134, 65, 244)' }}
+                  contentInset={{ top: 5, bottom: 5 }}
+              >
+
+              </BarChart>
+              <XAxis
+                      style={{ width: 300, marginTop: 5, marginLeft: 10 }}
+                      data={ this.state.data }
+                      formatLabel={ (value, index) => this.state.data[index] }
+                      labelStyle={ { color: 'black' } }
+              />
+            </View>
+          {
+            // this.state.users.map(user=><Text key={user.id}>{user.name}</Text>)
+          }
+          <Button
+            onPress={()=>{console.warn(this.state.records)}}
+            title="SHOW STATE"
+            color="#841584"
+          />
         </View>
 
       </View>
