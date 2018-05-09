@@ -10,20 +10,49 @@ import DatePicker from 'react-native-datepicker';
 export default class Entry extends Component {
   constructor(props){
     super(props);
+    let today = this.convertDateToString(new Date());
     this.state = {
       newEntry: {
         userId: 2,
-        projectName: 'default',
-        date: new Date(),
-        duration: 7.5,
-        summary: 'Creating new functions today'
+        projectId: 1,
+        date: today,
+        duration: "7.5",
+        summary: ''
       },
-      duration: 7.5
+      projects: []
     };
   }
 
-  componentDidMount(){
+  pad(number) {
+    if(number>10){
+      return number
+    } else {
+      return "0" + number
+    }
+  }
 
+  convertDateToString(date) {
+    if(date.getDate) {
+      let result = this.pad(date.getDate()) + "-" + this.pad(date.getMonth() +1 ) + "-" + this.pad(date.getFullYear())
+      return result
+    } else {
+      return "01-05-2018"
+    }
+  }
+
+  componentDidMount(){
+    this.getProjects();
+  }
+
+  getProjects = async () => {
+    try {
+      let response = await fetch(SERVER_URL + '/projects');
+      let responseJson = await response.json();
+      this.setState({projects : responseJson });
+    } catch (e) {
+      console.warn('getProjects failed')
+      console.warn(e);
+    }
   }
 
   createNewEntry = async () => {
@@ -73,6 +102,10 @@ export default class Entry extends Component {
   //   .catch(error => console.warn(error ));
   // }
 
+  showState= () => {
+    console.warn(this.state);
+  }
+
   render(){
     return (
       <View style={styles.container}>
@@ -82,7 +115,7 @@ export default class Entry extends Component {
         <View style={styles.row}>
               <DatePicker
                 style={{width: 200}}
-                date={this.state.date}
+                date={this.state.newEntry.date}
                 mode="date"
                 placeholder="select date"
                 format="DD-MM-YYYY"
@@ -102,27 +135,47 @@ export default class Entry extends Component {
                   }
                   // ... You can check the source to find the other keys.
                 }}
-                onDateChange={(date) => {this.setState({date: date})}}
+                onDateChange={(date) => this.setState(prev => ({
+                  ...prev,
+                  newEntry: {
+                    ...prev.newEntry,
+                    date: date
+                  }
+                }))}
               />
 
         </View>
         <View style={styles.row}>
-          <View style={styles.half}>
+          <View style={{flex:2}}>
             <Text>Project</Text>
             <Picker
-              selectedValue={this.state.language}
-              style={{ width: 100 }}
-              onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
-              <Picker.Item label="Java" value="java" />
-              <Picker.Item label="JavaScript" value="js" />
+              selectedValue={this.state.newEntry.projectId}
+              style={{ width: 160 }}
+              onValueChange={(itemValue, itemIndex) => this.setState(prev => ({
+                ...prev,
+                newEntry: {
+                  ...prev.newEntry,
+                  projectId: itemValue
+                }
+              }))}>
+              {this.state.projects.map(project=>
+                  <Picker.Item label={project.projectName} value={project.id} key={project.id} />
+              )}
+
             </Picker>
           </View>
-          <View style={styles.half}>
+          <View style={{flex:1}}>
             <Text>Duration</Text>
             <Picker
-              selectedValue={this.state.duration}
+              selectedValue={this.state.newEntry.duration}
               style={{ width: 100 }}
-              onValueChange={(itemValue, itemIndex) => this.setState({duration: itemValue})}>
+              onValueChange={(itemValue, itemIndex) => this.setState(prev => ({
+                ...prev,
+                newEntry: {
+                  ...prev.newEntry,
+                  duration: itemValue
+                }
+              }))}>
               <Picker.Item label="8:30" value="8.5" />
               <Picker.Item label="8:00" value="8" />
               <Picker.Item label="7:30" value="7.5" />
@@ -134,8 +187,14 @@ export default class Entry extends Component {
           <Text>Summary</Text>
           <TextInput
             style={styles.textInput}
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}
+            onChangeText={(text) => this.setState(prev => ({
+              ...prev,
+              newEntry: {
+                ...prev.newEntry,
+                summary: text
+              }
+            }))}
+            value={this.state.newEntry.summary}
           />
         </View>
         <View style={styles.row}>
@@ -147,6 +206,11 @@ export default class Entry extends Component {
           <Button
             onPress={this.createNewEntry}
             title="CANCEL"
+            color="#841584"
+          />
+          <Button
+            onPress={this.showState}
+            title="SHOW STATE"
             color="#841584"
           />
         </View>
