@@ -57,11 +57,12 @@ export default class Entry extends Component {
 
   createNewEntry = async () => {
     try {
-        let data = Object.assign({},this.state.newEntry,{
-          date: new Date()
-        });
+        // let data = Object.assign({},this.state.newEntry,{
+        //   date: new Date()
+        // });
+        let data = this.state.newEntry;
 
-        let response = await fetch(SERVER_URL + '/reports', {
+        let response = await fetch(SERVER_URL + '/records', {
           method: 'post',
           body: JSON.stringify(data),
           headers: new Headers({
@@ -70,7 +71,6 @@ export default class Entry extends Component {
 
         });
         let responseJson = await response.json();
-        console.warn(responseJson);
     } catch (e) {
       console.warn('createNewEntry failed');
       console.warn(e);
@@ -176,10 +176,20 @@ export default class Entry extends Component {
                   duration: itemValue
                 }
               }))}>
+              <Picker.Item label="10:30" value="10.5" />
+              <Picker.Item label="10:00" value="10" />
+              <Picker.Item label="9:30" value="9.5" />
+              <Picker.Item label="9:00" value="9" />
               <Picker.Item label="8:30" value="8.5" />
               <Picker.Item label="8:00" value="8" />
               <Picker.Item label="7:30" value="7.5" />
               <Picker.Item label="7:00" value="7" />
+              <Picker.Item label="6:30" value="6.5" />
+              <Picker.Item label="6:00" value="6" />
+              <Picker.Item label="5:30" value="5.5" />
+              <Picker.Item label="5:00" value="5" />
+              <Picker.Item label="4:30" value="4.5" />
+              <Picker.Item label="4:00" value="4" />
             </Picker>
           </View>
         </View>

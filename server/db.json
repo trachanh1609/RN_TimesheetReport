@@ -1,8 +1,9 @@
 {
-  "projects": [{
-    "id": 1,
-    "projectName": "Introduction",
-    "description": "Intro to Devecto"
+  "projects": [
+    {
+      "id": 1,
+      "projectName": "Introduction",
+      "description": "Intro to Devecto"
     },
     {
       "id": 2,
@@ -22,36 +23,44 @@
   ],
   "records": [
     {
-        "id": 1,
-        "userId": 1,
-        "projectId": 1,
-        "date": "today",
-        "duration": 7.5,
-        "summary": "Writing codes"
+      "userId": 2,
+      "projectId": 2,
+      "date": "09-05-2018",
+      "duration": "7.5",
+      "summary": "Meeting, writing codes",
+      "id": 1
     },
     {
-        "id": 2,
-        "userId": 2,
-        "projectId": 1,
-        "date": "today",
-        "duration": 7.5,
-        "summary": "Writing codes again"
+      "userId": 2,
+      "projectId": 2,
+      "date": "08-05-2018",
+      "duration": "8",
+      "summary": "writing codes",
+      "id": 2
     },
     {
-        "id": 3,
-        "userId": 1,
-        "projectId": 1,
-        "date": "today",
-        "duration": 7.5,
-        "summary": "Writing codes"
+      "userId": 2,
+      "projectId": 2,
+      "date": "07-05-2018",
+      "duration": "7",
+      "summary": "writing codes",
+      "id": 3
     },
     {
-        "id": 4,
-        "userId": 2,
-        "projectId": 1,
-        "date": "today",
-        "duration": 7.5,
-        "summary": "Writing codes again"
+      "userId": 2,
+      "projectId": 2,
+      "date": "06-05-2018",
+      "duration": "7.5",
+      "summary": "writing codes",
+      "id": 4
+    },
+    {
+      "userId": 2,
+      "projectId": 2,
+      "date": "04-05-2018",
+      "duration": "7",
+      "summary": "writing codes",
+      "id": 5
     }
   ],
   "users": [
