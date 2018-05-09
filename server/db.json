@@ -1,15 +1,57 @@
 {
-  "reports": [
+  "projects": [{
+    "id": 1,
+    "projectName": "Introduction",
+    "description": "Intro to Devecto"
+    },
     {
-      "id": 1,
-      "userId": 2,
-      "projectName": "ABB Drive",
-      "date": "new Date()",
-      "duration": {
-        "hour": 7,
-        "minute": 30
-      },
-      "summary": "Creating new functions today"
+      "id": 2,
+      "projectName": "ABB",
+      "description": "Developing ABB software"
+    },
+    {
+      "id": 3,
+      "projectName": "Nokia",
+      "description": "Developing Nokia software"
+    },
+    {
+      "id": 4,
+      "projectName": "Nokia",
+      "description": "Developing Metsä software"
+    }
+  ],
+  "records": [
+    {
+        "id": 1,
+        "userId": 1,
+        "projectId": 1,
+        "date": "today",
+        "duration": 7.5,
+        "summary": "Writing codes"
+    },
+    {
+        "id": 2,
+        "userId": 2,
+        "projectId": 1,
+        "date": "today",
+        "duration": 7.5,
+        "summary": "Writing codes again"
+    },
+    {
+        "id": 3,
+        "userId": 1,
+        "projectId": 1,
+        "date": "today",
+        "duration": 7.5,
+        "summary": "Writing codes"
+    },
+    {
+        "id": 4,
+        "userId": 2,
+        "projectId": 1,
+        "date": "today",
+        "duration": 7.5,
+        "summary": "Writing codes again"
     }
   ],
   "users": [
