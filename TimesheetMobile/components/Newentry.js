@@ -8,6 +8,11 @@ import DatePicker from 'react-native-datepicker';
 
 
 export default class Entry extends Component {
+  static navigationOptions = {
+    title: 'ADD NEW ENTRY',
+    headerTitleStyle: { alignSelf: 'center' },
+  };
+
   constructor(props){
     super(props);
     let today = this.convertDateToString(new Date());
@@ -213,11 +218,7 @@ export default class Entry extends Component {
             title="ADD"
             color="#841584"
           />
-          <Button
-            onPress={this.createNewEntry}
-            title="CANCEL"
-            color="#841584"
-          />
+
           <Button
             onPress={this.showState}
             title="SHOW STATE"
