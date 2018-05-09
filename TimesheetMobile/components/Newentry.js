@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, View, Button} from 'react-native';
+import {
+  Text, StyleSheet, View, Button, Picker, TextInput
+} from 'react-native';
 import axios from 'axios';
 import {SERVER_URL} from '../const_var';
 import DatePicker from 'react-native-datepicker';
@@ -8,13 +10,15 @@ import DatePicker from 'react-native-datepicker';
 export default class Entry extends Component {
   constructor(props){
     super(props);
-    this.state = {newEntry:
-      { userId: 2,
+    this.state = {
+      newEntry: {
+        userId: 2,
         projectName: 'default',
         date: new Date(),
         duration: 7.5,
         summary: 'Creating new functions today'
-      }
+      },
+      duration: 7.5
     };
   }
 
@@ -73,7 +77,7 @@ export default class Entry extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.row}>
-          <Text>New Entry</Text>
+          <Text style={styles.header}>New Entry</Text>
         </View>
         <View style={styles.row}>
               <DatePicker
@@ -81,9 +85,9 @@ export default class Entry extends Component {
                 date={this.state.date}
                 mode="date"
                 placeholder="select date"
-                format="YYYY-MM-DD"
-                minDate="2016-05-01"
-                maxDate="2018-05-15"
+                format="DD-MM-YYYY"
+                minDate="01-01-2017"
+
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
                 customStyles={{
@@ -94,7 +98,7 @@ export default class Entry extends Component {
                     marginLeft: 0
                   },
                   dateInput: {
-                    marginLeft: 36
+                    marginLeft: 100
                   }
                   // ... You can check the source to find the other keys.
                 }}
@@ -103,13 +107,36 @@ export default class Entry extends Component {
 
         </View>
         <View style={styles.row}>
-          <Text>Project</Text>
+          <View style={styles.half}>
+            <Text>Project</Text>
+            <Picker
+              selectedValue={this.state.language}
+              style={{ width: 100 }}
+              onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
+              <Picker.Item label="Java" value="java" />
+              <Picker.Item label="JavaScript" value="js" />
+            </Picker>
+          </View>
+          <View style={styles.half}>
+            <Text>Duration</Text>
+            <Picker
+              selectedValue={this.state.duration}
+              style={{ width: 100 }}
+              onValueChange={(itemValue, itemIndex) => this.setState({duration: itemValue})}>
+              <Picker.Item label="8:30" value="8.5" />
+              <Picker.Item label="8:00" value="8" />
+              <Picker.Item label="7:30" value="7.5" />
+              <Picker.Item label="7:00" value="7" />
+            </Picker>
+          </View>
         </View>
-        <View style={styles.row}>
-          <Text>7 : 30 min</Text>
-        </View>
-        <View style={styles.row}>
+        <View style={{marginBottom: 20}}>
           <Text>Summary</Text>
+          <TextInput
+            style={styles.textInput}
+            onChangeText={(text) => this.setState({text})}
+            value={this.state.text}
+          />
         </View>
         <View style={styles.row}>
           <Button
@@ -137,5 +164,16 @@ const styles = StyleSheet.create({
   },
   row:{
     flexDirection: 'row',
+    marginTop: 5,
+    marginBottom: 10,
+  },
+  textInput: {
+    width: 250
+  },
+  half: {
+    flex: 1
+  },
+  header: {
+    fontSize: 20
   }
 });
