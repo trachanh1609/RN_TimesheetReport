@@ -65,16 +65,12 @@ class Report extends Component {
     return (
       <View style={styles.container}>
         <View style={{flex:1, justifyContent: 'flex-end'}}>
-          <Button
-
-            onPress={() => this.props.navigation.navigate('Newentry')}
-            title="Add new entry"
-          />
+          <Text>UserName</Text>
 
         </View>
         <View style={{flex: 8}}>
           <Text style={styles.welcome}>
-            This is the Report Page
+             -  Week 20 12.5-18.5  - 
           </Text>
           <View >
             <BarChart
@@ -96,6 +92,15 @@ class Report extends Component {
           {
             // this.state.users.map(user=><Text key={user.id}>{user.name}</Text>)
           }
+
+          {
+            this.props.isFetching && <Text>Loading ...</Text>
+          }
+
+          <Button
+            onPress={() => this.props.navigation.navigate('Newentry')}
+            title="Add new entry"
+          />
 
           <Button
             onPress={this.props.getRecordsFromAPI}
@@ -127,7 +132,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 16,
     textAlign: 'center',
     margin: 10,
   },
@@ -140,7 +145,8 @@ const styles = StyleSheet.create({
 
 function mapStateToProps (state) {
   return {
-    records: state.records
+    records: state.records.records,
+    isFetching: state.records.isFetching
   }
 }
 

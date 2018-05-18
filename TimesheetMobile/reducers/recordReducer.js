@@ -13,10 +13,15 @@ const initialState = {
 export default function recordReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_RECORD:
-      return Object.assign({}, state, {
+      // return Object.assign({}, state, {
+      //   records: [],
+      //   isFetching: true
+      // })
+      return {
+        ...state,
         records: [],
         isFetching: true
-      })
+      }
     case FETCH_RECORD_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
