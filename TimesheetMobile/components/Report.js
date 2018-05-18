@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import {SERVER_URL} from '../const_var';
-import { BarChart, Grid, XAxis } from 'react-native-svg-charts';
+import { BarChart, Grid, XAxis, YAxis } from 'react-native-svg-charts';
 import {connect} from 'react-redux';
 import {fetchRecordFromAPI} from '../actions/actions'
 
@@ -22,7 +22,7 @@ class Report extends Component {
     this.state= {
       records: [],
       users: [{id: 1, name: 'One'}, {id:2, name: 'Two'}],
-      data: [7,7.5,8,8.5,6,0,0]
+      data: [7,9,8,8.5,6,0,0]
     } ;
   }
 
@@ -62,6 +62,37 @@ class Report extends Component {
   // }
 
   render() {
+    const date_data = [
+            {
+                value: 12,
+                label: '12',
+            },
+            {
+                value: 13,
+                label: '13',
+            },
+            {
+                value: 14,
+                label: '14',
+            },
+            {
+                value: 15,
+                label: '15',
+            },
+            {
+                value: 16,
+                label: '16',
+            },
+            {
+                value: 17,
+                label: 'Sat',
+            },
+            {
+                value: 18,
+                label: 'Sun',
+            },
+        ]
+
     return (
       <View style={styles.container}>
         <View style={{flex:1, justifyContent: 'flex-end'}}>
@@ -70,25 +101,35 @@ class Report extends Component {
         </View>
         <View style={{flex: 8}}>
           <Text style={styles.welcome}>
-             -  Week 20 12.5-18.5  - 
+             -  Week 20 12.5-18.5  -
           </Text>
-          <View >
-            <BarChart
-                  style={{ width: 300, height: 200 }}
-                  data={ this.state.data }
-                  gridMin={0}
-                  svg={{ fill: 'rgb(134, 65, 244)' }}
-                  contentInset={{ top: 5, bottom: 5 }}
-              >
-
-              </BarChart>
-              <XAxis
-                      style={{ width: 300, marginTop: 5, marginLeft: 10 }}
-                      data={ this.state.data }
-                      formatLabel={ (value, index) => this.state.data[index] }
-                      labelStyle={ { color: 'black' } }
+          <View style={{flexDirection: 'row', marginBottom: 10}}>
+            <View style={{height: 200, marginRight: 10}}>
+              <YAxis
+                style={{height: 190, marginBottom: 30}}
+                data={[1,2,3,4,5,6,7,8,9]}
+                contentInset={{ top: 5, bottom: 15 }}
               />
             </View>
+            <View style={{flexDirection: 'column'}}>
+                <BarChart
+                      style={{ width: 300, height: 200 }}
+                      data={ this.state.data }
+                      gridMin={0}
+                      svg={{ fill: 'rgb(134, 65, 244)' }}
+                      contentInset={{ top: 5, bottom: 5 }}
+                  >
+                  <Grid direction={Grid.Direction.HORIZONTAL}/>
+                </BarChart>
+                <XAxis
+                        style={{ width: 300, marginTop: 5, marginLeft: 15, marginRight: 15 }}
+                        data={ date_data }
+                        formatLabel={ (_, index) => date_data[index].label }
+                        labelStyle={ { color: 'black' } }
+                        contentInset={{ left: 5, right: 30 }}
+                />
+            </View>
+          </View>
           {
             // this.state.users.map(user=><Text key={user.id}>{user.name}</Text>)
           }
@@ -101,7 +142,7 @@ class Report extends Component {
             onPress={() => this.props.navigation.navigate('Newentry')}
             title="Add new entry"
           />
-
+        {/*
           <Button
             onPress={this.props.getRecordsFromAPI}
             title="Get Records from API"
@@ -117,6 +158,7 @@ class Report extends Component {
             title="SHOW PROPS"
             color="green"
           />
+        */}
         </View>
 
       </View>
