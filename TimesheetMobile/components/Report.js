@@ -12,7 +12,7 @@ import axios from 'axios';
 import {SERVER_URL} from '../const_var';
 import { BarChart, Grid, XAxis, YAxis } from 'react-native-svg-charts';
 import {connect} from 'react-redux';
-import {fetchRecordFromAPI} from '../actions/actions'
+import {fetchRecordFromAPI} from '../actions/actions';
 
 class Report extends Component {
   static navigationOptions = {
@@ -98,9 +98,38 @@ class Report extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={{flex:1, justifyContent: 'flex-end'}}>
+        <View style={{flex:1, justifyContent: 'center'}}>
           <Text>UserName</Text>
+        </View>
+        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start'}}>
+          <View style={{flex: 1,padding: 5, paddingLeft: 20,backgroundColor: 'transparent'}}>
+            <View style={{flex: 1, flexDirection: 'row'}}>
+              <Button
+                buttonStyle={{
+                  backgroundColor: "orange",
+                  width: 40,
+                  height: 10,
+                }}
 
+              />
+              <Text>Nokia</Text>
+            </View>
+            <View style={{flex: 1, flexDirection: 'row'}}>
+              <Button
+                buttonStyle={{
+                  backgroundColor: "blue",
+                  width: 40,
+                  height: 10,
+                }}
+
+              />
+            <Text>ABB</Text>
+            </View>
+          </View>
+          <View style={{flex:1,padding: 5, paddingLeft: 20,backgroundColor: 'transparent'}}>
+            <Text>This week balance: +1h</Text>
+            <Text>All time balance: +3h </Text>
+          </View>
         </View>
         <View style={{flex: 8}}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems:'center', marginBottom: 20}}>
