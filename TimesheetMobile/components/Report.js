@@ -10,7 +10,7 @@ import {
 } from 'react-native-elements';
 import axios from 'axios';
 import {SERVER_URL} from '../const_var';
-import { BarChart, Grid, XAxis, YAxis } from 'react-native-svg-charts';
+import { BarChart, Grid, XAxis, YAxis, StackedBarChart } from 'react-native-svg-charts';
 import {connect} from 'react-redux';
 import {fetchRecordFromAPI} from '../actions/actions';
 
@@ -96,6 +96,41 @@ class Report extends Component {
             },
         ]
 
+        const stacked_data = [
+              {
+                  Nokia: 4,
+                  abb: 3,
+              },
+              {
+                  Nokia: 2.5,
+                  abb: 4,
+              },
+              {
+                  Nokia: 2,
+                  abb: 5.5,
+              },
+              {
+                  Nokia: 0,
+                  abb: 6,
+              },
+              {
+                  Nokia: 5,
+                  abb: 4,
+              },
+              {
+                  Nokia: 0,
+                  abb: 0,
+              },
+              {
+                  Nokia: 0,
+                  abb: 0,
+              },
+          ]
+
+          const stacked_colors = [ 'orange', 'blue' ]
+          const stacked_keys   = [ 'Nokia', 'abb' ]
+
+
     return (
       <View style={styles.container}>
         <View style={{flex:1, justifyContent: 'center'}}>
@@ -164,6 +199,7 @@ class Report extends Component {
               />
             </View>
             <View style={{flexDirection: 'column'}}>
+                {/*
                 <BarChart
                       style={{ width: 300, height: 200 }}
                       data={ this.state.data }
@@ -173,6 +209,17 @@ class Report extends Component {
                   >
                   <Grid direction={Grid.Direction.HORIZONTAL}/>
                 </BarChart>
+                */}
+                <StackedBarChart
+                      style={ { width: 300,height: 200 } }
+                      keys={ stacked_keys }
+                      colors={ stacked_colors }
+                      data={ stacked_data }
+                      showGrid={ true }
+                      contentInset={ { top: 5, bottom: 5 } }
+                  >
+                  <Grid direction={Grid.Direction.HORIZONTAL}/>
+                </StackedBarChart>
                 <XAxis
                         style={{ width: 300, marginTop: 5, marginLeft: 15, marginRight: 15 }}
                         data={ date_data }
