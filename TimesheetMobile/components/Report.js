@@ -3,8 +3,11 @@ import {
   StyleSheet,
   Text,
   View,
-  Button
+  // Button
 } from 'react-native';
+import {
+  Button
+} from 'react-native-elements';
 import axios from 'axios';
 import {SERVER_URL} from '../const_var';
 import { BarChart, Grid, XAxis, YAxis } from 'react-native-svg-charts';
@@ -100,9 +103,29 @@ class Report extends Component {
 
         </View>
         <View style={{flex: 8}}>
-          <Text style={styles.welcome}>
-             -  Week 20 12.5-18.5  -
-          </Text>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems:'center', marginBottom: 20}}>
+            <Button
+              icon={{
+                name: 'arrow-back',
+                size: 30,
+                color: 'black'
+              }}
+              buttonStyle={{
+                backgroundColor: 'transparent',
+                }}
+            />
+          <Text>Week 20 12.5-18.5</Text>
+              <Button
+                icon={{
+                  name: 'arrow-forward',
+                  size: 30,
+                  color: 'black'
+                }}
+                buttonStyle={{
+                  backgroundColor: 'transparent',
+                  }}
+              />
+          </View>
           <View style={{flexDirection: 'row', marginBottom: 10}}>
             <View style={{height: 200, marginRight: 10}}>
               <YAxis
@@ -139,8 +162,11 @@ class Report extends Component {
           }
 
           <Button
+            raised
+            icon={{name: 'add'}}
+            backgroundColor="green"
             onPress={() => this.props.navigation.navigate('Newentry')}
-            title="Add new entry"
+            title="Add New Entry"
           />
         {/*
           <Button
