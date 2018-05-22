@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {
-  Text, StyleSheet, View, Button, Picker, TextInput
+  Text, StyleSheet, View, Picker, TextInput
 } from 'react-native';
+import {
+  Button
+} from 'react-native-elements';
 import axios from 'axios';
 import {SERVER_URL} from '../const_var';
 import DatePicker from 'react-native-datepicker';
@@ -212,18 +215,24 @@ export default class Entry extends Component {
             value={this.state.newEntry.summary}
           />
         </View>
-        <View style={styles.row}>
+        <View >
+
           <Button
+            raised
+            icon={{name: 'add'}}
+            backgroundColor="green"
             onPress={this.createNewEntry}
-            title="ADD"
-            color="#841584"
+            title="Add New Entry"
+            buttonStyle={{}}
           />
 
+        {/*
           <Button
             onPress={this.showState}
             title="SHOW STATE"
             color="#841584"
           />
+        */}
         </View>
       </View>
     )
