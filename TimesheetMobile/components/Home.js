@@ -12,6 +12,7 @@ import { XAxis, YAxis, StackedBarChart } from 'react-native-svg-charts';
 import {connect} from 'react-redux';
 import {fetchRecordFromAPI} from '../actions/actions';
 import { Col, Row, Grid } from "react-native-easy-grid";
+import ReportChart from './ReportChart';
 
 class Home extends Component {
   static navigationOptions = ({navigation}) => {
@@ -81,7 +82,7 @@ class Home extends Component {
             </Col>
           </Row>
           <Row size={10} style={{backgroundColor: 'red'}}>
-            <Col style={{flex: 25,backgroundColor: 'blue', alignItems:'center', justifyContent: 'center'}}>
+            <Col size={25} style={{backgroundColor: 'blue', alignItems:'center', justifyContent: 'center'}}>
               <Button
                 icon={{
                   name: 'arrow-back',
@@ -93,10 +94,10 @@ class Home extends Component {
                   }}
               />
             </Col>
-            <Col style={{flex: 50,backgroundColor: 'green', alignItems:'center', justifyContent: 'center'}}>
+            <Col size={50} style={{backgroundColor: 'green', alignItems:'center', justifyContent: 'center'}}>
               <Text style={{fontSize: 18}}>Week 20  12.5-18.5</Text>
             </Col>
-            <Col style={{flex: 25,backgroundColor: 'gray', alignItems:'center', justifyContent: 'center'}}>
+            <Col size={25} style={{backgroundColor: 'gray', alignItems:'center', justifyContent: 'center'}}>
               <Button
                 icon={{
                   name: 'arrow-forward',
@@ -110,8 +111,8 @@ class Home extends Component {
             </Col>
 
           </Row>
-          <Row size={50} style={{backgroundColor: 'orange'}}>
-
+          <Row size={50} style={{padding: 20}}>
+            <ReportChart/>
           </Row>
           <Row size={20} style={{backgroundColor: 'yellow', justifyContent:'center', alignItems:'center'}}>
             <Button
