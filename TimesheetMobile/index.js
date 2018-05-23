@@ -2,6 +2,7 @@ import React from 'react';
 import { AppRegistry } from 'react-native';
 import App from './App';
 import Report from './components/Report';
+import Home from './components/Home';
 import Newentry from './components/Newentry';
 import {Provider} from 'react-redux';
 import configureStore from './configureStore';
@@ -11,8 +12,9 @@ const store = configureStore();
 
 const RootStack = createStackNavigator(
   {
-    Home:  Report,
-    Newentry: Newentry
+    Home:  Home,
+    Newentry: Newentry,
+    Report: Report,
   },
   {
     initialRouteName: 'Home',
