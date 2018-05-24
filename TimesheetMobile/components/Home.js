@@ -38,6 +38,7 @@ class Home extends Component {
   }
 
   componentDidMount(){
+    this.props.getRecordsFromAPI();
 
   }
 
@@ -112,7 +113,9 @@ class Home extends Component {
 
           </Row>
           <Row size={50} style={{padding: 20}}>
-            <ReportChart/>
+            {
+              this.props.isFetching ? <Text>Loading ...</Text> : <ReportChart/>
+            }
           </Row>
           <Row size={20} style={{backgroundColor: 'yellow', justifyContent:'center', alignItems:'center'}}>
             <Button
@@ -121,6 +124,13 @@ class Home extends Component {
               backgroundColor="green"
               onPress={() => this.props.navigation.navigate('Newentry')}
               title="Add New Entry"
+            />
+            <Button
+              raised
+              icon={{name: 'add'}}
+              backgroundColor="blue"
+              onPress={() => console.warn(this.props.records)}
+              title="Show props.records"
             />
           </Row>
 

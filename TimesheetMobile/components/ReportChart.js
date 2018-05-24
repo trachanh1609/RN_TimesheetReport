@@ -77,7 +77,7 @@ export default class ReportChart extends Component {
         <View style={{height: 230, marginRight: 10}}>
           <YAxis
             style={{height: 220}}
-            data={[1,2,3,4,5,6,7,8,9]}
+            data={[1,2,3,4,5,6,7,8,9,10]}
             contentInset={{ top: 6, bottom: 5 }}
           />
         </View>
