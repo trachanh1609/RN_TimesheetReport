@@ -27,6 +27,13 @@ export default class Entry extends Component {
         duration: "7.5",
         summary: ''
       },
+      defaultNewEntry: {
+        userId: 2,
+        projectId: 1,
+        date: today,
+        duration: "7.5",
+        summary: ''
+      },
       projects: []
     };
   }
@@ -79,6 +86,7 @@ export default class Entry extends Component {
 
         });
         let responseJson = await response.json();
+        this.setState({newEntry: this.state.defaultNewEntry});
     } catch (e) {
       console.warn('createNewEntry failed');
       console.warn(e);

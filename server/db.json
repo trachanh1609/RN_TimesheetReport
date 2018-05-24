@@ -3,22 +3,26 @@
     {
       "id": 1,
       "projectName": "Introduction",
-      "description": "Intro to Devecto"
+      "description": "Intro to Devecto",
+      "color": "yellow"
     },
     {
       "id": 2,
       "projectName": "ABB",
-      "description": "Developing ABB software"
+      "description": "Developing ABB software",
+      "color": "red"
     },
     {
       "id": 3,
       "projectName": "Nokia",
-      "description": "Developing Nokia software"
+      "description": "Developing Nokia software",
+      "color": "blue"
     },
     {
       "id": 4,
       "projectName": "Metsä",
-      "description": "Developing Metsä software"
+      "description": "Developing Metsä software",
+      "color": "green"
     }
   ],
   "records": [
@@ -61,6 +65,22 @@
       "duration": "7",
       "summary": "writing codes",
       "id": 5
+    },
+    {
+      "userId": 2,
+      "projectId": 4,
+      "date": "10-05-2018",
+      "duration": "7",
+      "summary": "Hi",
+      "id": 6
+    },
+    {
+      "userId": 2,
+      "projectId": 3,
+      "date": "11-05-2018",
+      "duration": "7.5",
+      "summary": "Somethi g",
+      "id": 7
     }
   ],
   "users": [
