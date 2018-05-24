@@ -84,14 +84,38 @@ class Home extends Component {
 
   loadPage = (page) => {
     if(page<0) return;
-    let query = "_page=" + page + "&_limit=3";
+    let query = "_page=" + page + "&_limit=7";
 
     this.props.getRecordsFromAPI(query);
     this.setState({current_page: page});
+    this.updateChartData(this.props.records);
+  }
+
+  updateChartData = (records) => {
+    console.warn(records);
+    let chart_date = this.getDateForChart(records) ;
+    let chart_data = this.getDataForChart(records);
+    let chart_keys = [ 'ABB' ];
+    let chart_colors = [ 'indianred'];
+    this.setState({
+      chart_data,
+      chart_date,
+      chart_keys,
+      chart_colors
+    });
   }
 
   getDataForChart(records) {
-    return records.map(record => record.duration);
+    let result = records.map(record => ({"ABB": record.duration}));
+
+    return result
+  }
+
+  getDateForChart(records) {
+    let result = records.slice(0,5).map(record => ({"label": record.date.slice(0,2).toString()}));
+    result.push({"label": "Sat"});
+    result.push({"label": "Sun"});
+    return result
   }
 
   render() {
@@ -145,7 +169,7 @@ class Home extends Component {
               />
             </Col>
             <Col size={50} style={{alignItems:'center', justifyContent: 'center'}}>
-              <Text style={{fontSize: 18}}>Week 20  12.5-18.5</Text>
+              <Text style={{fontSize: 18}}>Week 20</Text>
             </Col>
             <Col size={25} style={{alignItems:'center', justifyContent: 'center'}}>
               <Button
@@ -185,8 +209,8 @@ class Home extends Component {
               raised
               icon={{name: 'add'}}
               backgroundColor="blue"
-              onPress={() => console.warn(this.props.records)}
-              title="Show props.records"
+              onPress={()=> console.warn(this.state)}
+              title="Show State"
             />
           </Row>
 

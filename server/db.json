@@ -29,7 +29,7 @@
     {
       "userId": 2,
       "projectId": 2,
-      "date": "09-05-2018",
+      "date": "07-05-2018",
       "duration": "7.5",
       "summary": "Meeting, writing codes",
       "id": 1
@@ -45,7 +45,7 @@
     {
       "userId": 2,
       "projectId": 2,
-      "date": "07-05-2018",
+      "date": "09-05-2018",
       "duration": "7",
       "summary": "writing codes",
       "id": 3
@@ -53,7 +53,7 @@
     {
       "userId": 2,
       "projectId": 2,
-      "date": "06-05-2018",
+      "date": "10-05-2018",
       "duration": "7.5",
       "summary": "writing codes",
       "id": 4
@@ -61,7 +61,7 @@
     {
       "userId": 2,
       "projectId": 2,
-      "date": "04-05-2018",
+      "date": "11-05-2018",
       "duration": "7",
       "summary": "writing codes",
       "id": 5
@@ -69,18 +69,130 @@
     {
       "userId": 2,
       "projectId": 4,
-      "date": "10-05-2018",
-      "duration": "7",
+      "date": "12-05-2018",
+      "duration": "0",
       "summary": "Hi",
       "id": 6
     },
     {
       "userId": 2,
       "projectId": 3,
-      "date": "11-05-2018",
-      "duration": "7.5",
+      "date": "13-05-2018",
+      "duration": "0",
       "summary": "Somethi g",
       "id": 7
+    },
+    {
+      "userId": 2,
+      "projectId": 2,
+      "date": "14-05-2018",
+      "duration": "7",
+      "summary": "Meeting, writing codes",
+      "id": 8
+    },
+    {
+      "userId": 2,
+      "projectId": 2,
+      "date": "15-05-2018",
+      "duration": "6",
+      "summary": "writing codes",
+      "id": 9
+    },
+    {
+      "userId": 2,
+      "projectId": 2,
+      "date": "16-05-2018",
+      "duration": "7.5",
+      "summary": "writing codes",
+      "id": 10
+    },
+    {
+      "userId": 2,
+      "projectId": 2,
+      "date": "17-05-2018",
+      "duration": "8",
+      "summary": "writing codes",
+      "id": 11
+    },
+    {
+      "userId": 2,
+      "projectId": 2,
+      "date": "18-05-2018",
+      "duration": "9",
+      "summary": "writing codes",
+      "id": 12
+    },
+    {
+      "userId": 2,
+      "projectId": 4,
+      "date": "19-05-2018",
+      "duration": "0",
+      "summary": "Hi",
+      "id": 13
+    },
+    {
+      "userId": 2,
+      "projectId": 3,
+      "date": "20-05-2018",
+      "duration": "0",
+      "summary": "Somethi g",
+      "id": 14
+    },
+    {
+      "userId": 2,
+      "projectId": 2,
+      "date": "21-05-2018",
+      "duration": "6.5",
+      "summary": "Meeting, writing codes",
+      "id": 15
+    },
+    {
+      "userId": 2,
+      "projectId": 2,
+      "date": "22-05-2018",
+      "duration": "7.5",
+      "summary": "writing codes",
+      "id": 16
+    },
+    {
+      "userId": 2,
+      "projectId": 2,
+      "date": "23-05-2018",
+      "duration": "7",
+      "summary": "writing codes",
+      "id": 17
+    },
+    {
+      "userId": 2,
+      "projectId": 2,
+      "date": "24-05-2018",
+      "duration": "7.5",
+      "summary": "writing codes",
+      "id": 18
+    },
+    {
+      "userId": 2,
+      "projectId": 2,
+      "date": "25-05-2018",
+      "duration": "7",
+      "summary": "writing codes",
+      "id": 19
+    },
+    {
+      "userId": 2,
+      "projectId": 4,
+      "date": "26-05-2018",
+      "duration": "0",
+      "summary": "Hi",
+      "id": 20
+    },
+    {
+      "userId": 2,
+      "projectId": 3,
+      "date": "27-05-2018",
+      "duration": "0",
+      "summary": "Somethi g",
+      "id": 21
     }
   ],
   "users": [

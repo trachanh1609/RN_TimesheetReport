@@ -5,7 +5,7 @@ import {
 } from './actionTypes';
 import {SERVER_URL} from '../const_var'
 
-export function fetchRecordFromAPI(query = '_page=1&_limit=3'){
+export function fetchRecordFromAPI(query = '_page=1&_limit=7'){
   return (dispatch) => {
     dispatch(fetchRecord());
     fetch( SERVER_URL + "/users/2/records?" + query  )
