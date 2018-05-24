@@ -33,7 +33,48 @@ class Home extends Component {
     super(props);
     this.state= {
       records: [],
-      data: []
+      data: [],
+      chart_date: [
+              {   label: '2'},
+              {   label: '3'},
+              {   label: '4'},
+              {   label: '5'},
+              {   label: '6'},
+              {   label: 'Sat' },
+              {   label: 'Sun'},
+          ],
+          chart_data: [
+                {
+                    Nokia: 4,
+                    abb: 3,
+                },
+                {
+                    Nokia: 2.5,
+                    abb: 4,
+                },
+                {
+                    Nokia: 2,
+                    abb: 5.5,
+                },
+                {
+                    Nokia: 0,
+                    abb: 6,
+                },
+                {
+                    Nokia: 5,
+                    abb: 4,
+                },
+                {
+                    Nokia: 0,
+                    abb: 0,
+                },
+                {
+                    Nokia: 0,
+                    abb: 0,
+                },
+            ],
+            chart_colors: [ 'orange', 'blue' ],
+            chart_keys: [ 'Nokia', 'abb' ]
     } ;
   }
 
@@ -49,11 +90,11 @@ class Home extends Component {
   render() {
     return (
       <Grid>
-          <Row size={5} style={{backgroundColor: 'red', justifyContent: 'center', alignItems:'center'}}>
+          <Row size={5} style={{justifyContent: 'center', alignItems:'center'}}>
             <Text>UserName</Text>
           </Row>
-          <Row size={15} style={{backgroundColor: 'green'}}>
-            <Col style={{backgroundColor: 'pink'}}>
+          <Row size={15}>
+            <Col>
               <Row style={{alignItems:'center'}}>
                 <Button
                   buttonStyle={{
@@ -73,7 +114,7 @@ class Home extends Component {
               <Text>ABB</Text>
               </Row>
             </Col>
-            <Col style={{backgroundColor: 'yellow'}}>
+            <Col>
               <Row style={{alignItems:'center', paddingLeft: 10}}>
                 <Text>This week balance: +1h</Text>
               </Row>
@@ -82,8 +123,8 @@ class Home extends Component {
               </Row>
             </Col>
           </Row>
-          <Row size={10} style={{backgroundColor: 'red'}}>
-            <Col size={25} style={{backgroundColor: 'blue', alignItems:'center', justifyContent: 'center'}}>
+          <Row size={10}>
+            <Col size={25} style={{alignItems:'center', justifyContent: 'center'}}>
               <Button
                 icon={{
                   name: 'arrow-back',
@@ -95,10 +136,10 @@ class Home extends Component {
                   }}
               />
             </Col>
-            <Col size={50} style={{backgroundColor: 'green', alignItems:'center', justifyContent: 'center'}}>
+            <Col size={50} style={{alignItems:'center', justifyContent: 'center'}}>
               <Text style={{fontSize: 18}}>Week 20  12.5-18.5</Text>
             </Col>
-            <Col size={25} style={{backgroundColor: 'gray', alignItems:'center', justifyContent: 'center'}}>
+            <Col size={25} style={{alignItems:'center', justifyContent: 'center'}}>
               <Button
                 icon={{
                   name: 'arrow-forward',
@@ -114,10 +155,16 @@ class Home extends Component {
           </Row>
           <Row size={50} style={{padding: 20}}>
             {
-              this.props.isFetching ? <Text>Loading ...</Text> : <ReportChart/>
+              this.props.isFetching ? <Text>Loading ...</Text> :
+              <ReportChart
+                hours={this.state.chart_data}
+                date={this.state.chart_date}
+                colors={this.state.chart_colors}
+                keys={this.state.chart_keys}
+              />
             }
           </Row>
-          <Row size={20} style={{backgroundColor: 'yellow', justifyContent:'center', alignItems:'center'}}>
+          <Row size={20} style={{justifyContent:'center', alignItems:'center'}}>
             <Button
               raised
               icon={{name: 'add'}}
