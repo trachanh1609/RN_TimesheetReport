@@ -32,9 +32,8 @@ class Home extends Component {
   constructor(props){
     super(props);
     this.state= {
-      records: [],
-      data: [],
-      chart_date: [
+          current_page: 1,
+          chart_date: [
               {   label: '2'},
               {   label: '3'},
               {   label: '4'},
@@ -73,14 +72,22 @@ class Home extends Component {
                     abb: 0,
                 },
             ],
-            chart_colors: [ 'orange', 'blue' ],
-            chart_keys: [ 'Nokia', 'abb' ]
+          chart_colors: [ 'navy', 'indianred' ],
+          chart_keys: [ 'Nokia', 'abb' ]
     } ;
   }
 
   componentDidMount(){
     this.props.getRecordsFromAPI();
 
+  }
+
+  loadPage = (page) => {
+    if(page<0) return;
+    let query = "_page=" + page + "&_limit=3";
+
+    this.props.getRecordsFromAPI(query);
+    this.setState({current_page: page});
   }
 
   getDataForChart(records) {
@@ -98,7 +105,7 @@ class Home extends Component {
               <Row style={{alignItems:'center'}}>
                 <Button
                   buttonStyle={{
-                    backgroundColor: "orange",
+                    backgroundColor: "navy",
                     width: 60
                   }}
                 />
@@ -107,7 +114,7 @@ class Home extends Component {
               <Row style={{alignItems:'center'}}>
                 <Button
                   buttonStyle={{
-                    backgroundColor: "blue",
+                    backgroundColor: "indianred",
                     width: 60
                   }}
                 />
@@ -134,6 +141,7 @@ class Home extends Component {
                 buttonStyle={{
                   backgroundColor: 'transparent',
                   }}
+                onPress={()=>this.loadPage(this.state.current_page-1)}
               />
             </Col>
             <Col size={50} style={{alignItems:'center', justifyContent: 'center'}}>
@@ -149,6 +157,7 @@ class Home extends Component {
                 buttonStyle={{
                   backgroundColor: 'transparent',
                   }}
+                onPress={()=>this.loadPage(this.state.current_page+1)}
               />
             </Col>
 
@@ -204,7 +213,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    getRecordsFromAPI: () => dispatch(fetchRecordFromAPI())
+    getRecordsFromAPI: (query) => dispatch(fetchRecordFromAPI(query))
   }
 }
 

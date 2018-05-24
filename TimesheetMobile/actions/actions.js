@@ -5,10 +5,10 @@ import {
 } from './actionTypes';
 import {SERVER_URL} from '../const_var'
 
-export function fetchRecordFromAPI(){
+export function fetchRecordFromAPI(query = '_page=1&_limit=3'){
   return (dispatch) => {
     dispatch(fetchRecord());
-    fetch( SERVER_URL + "/users/2/records" )
+    fetch( SERVER_URL + "/users/2/records?" + query  )
       .then(res => res.json())
       .then(json => dispatch(fetchRecordSuccess(json)))
       .catch(err => dispatch(fetchRecordFailure(err)));
