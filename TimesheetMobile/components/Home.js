@@ -45,35 +45,35 @@ class Home extends Component {
           chart_data: [
                 {
                     Nokia: 4,
-                    abb: 3,
+                    ABB: 3,
                 },
                 {
                     Nokia: 2.5,
-                    abb: 4,
+                    ABB: 4,
                 },
                 {
                     Nokia: 2,
-                    abb: 5.5,
+                    ABB: 5.5,
                 },
                 {
                     Nokia: 0,
-                    abb: 6,
+                    ABB: 6,
                 },
                 {
                     Nokia: 5,
-                    abb: 4,
+                    ABB: 4,
                 },
                 {
                     Nokia: 0,
-                    abb: 0,
+                    ABB: 0,
                 },
                 {
                     Nokia: 0,
-                    abb: 0,
+                    ABB: 0,
                 },
             ],
-          chart_colors: [ 'navy', 'indianred' ],
-          chart_keys: [ 'Nokia', 'abb' ]
+          chart_colors: [ 'indianred', 'navy' ],
+          chart_keys: [ 'ABB', 'Nokia' ]
     } ;
   }
 
@@ -88,34 +88,31 @@ class Home extends Component {
 
     this.props.getRecordsFromAPI(query);
     this.setState({current_page: page});
-    this.updateChartData(this.props.records);
   }
 
-  updateChartData = (records) => {
-    console.warn(records);
-    let chart_date = this.getDateForChart(records) ;
-    let chart_data = this.getDataForChart(records);
-    let chart_keys = [ 'ABB' ];
-    let chart_colors = [ 'indianred'];
-    this.setState({
-      chart_data,
-      chart_date,
-      chart_keys,
-      chart_colors
-    });
-  }
+  getDataForChart= (records) => {
 
-  getDataForChart(records) {
-    let result = records.map(record => ({"ABB": record.duration}));
-
-    return result
+    if(records&&records.length!=0) {
+      let result = records.slice(0,5).map(record=>({"ABB": record.duration, "Nokia": Math.floor(Math.random()*4)}));
+      result.push({"ABB": 0, "Nokia": 0});
+      result.push({"ABB": 0, "Nokia": 0});
+      return result;
+    }
+    else {
+      return this.state.chart_data
+    }
   }
 
   getDateForChart(records) {
-    let result = records.slice(0,5).map(record => ({"label": record.date.slice(0,2).toString()}));
-    result.push({"label": "Sat"});
-    result.push({"label": "Sun"});
-    return result
+    if(records&&records.length!=0) {
+      let result = records.slice(0,5).map(record => ({"label": record.date.slice(0,2).toString()}));
+      result.push({"label": "Sat"});
+      result.push({"label": "Sun"});
+      return result
+    }
+    else {
+      return this.state.chart_date
+    }
   }
 
   render() {
@@ -190,8 +187,8 @@ class Home extends Component {
             {
               this.props.isFetching ? <Text>Loading ...</Text> :
               <ReportChart
-                hours={this.state.chart_data}
-                date={this.state.chart_date}
+                hours={this.getDataForChart(this.props.records)}
+                date={this.getDateForChart(this.props.records)}
                 colors={this.state.chart_colors}
                 keys={this.state.chart_keys}
               />
@@ -207,10 +204,17 @@ class Home extends Component {
             />
             <Button
               raised
-              icon={{name: 'add'}}
+
               backgroundColor="blue"
               onPress={()=> console.warn(this.state)}
               title="Show State"
+            />
+            <Button
+              raised
+
+              backgroundColor="red"
+              onPress={()=> console.warn(this.props.records)}
+              title="Show Props"
             />
           </Row>
 
